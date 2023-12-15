@@ -19,7 +19,7 @@ scram b -j 4
 ```
 
 There are a couple important things to note here
-1. For step2 (HLT) workflows, you should use HLTrigger/Configuration/python/HLT_GRun_SONIC_cff.py, which contains fragment.hltParticleFlowRecHitHBHESPVCNN and a modified version of fragment.hltParticleFlowClusterHCAL to use the new SONIC producer for SPVCNN
+1. For step2 (HLT) workflows, you should use HLTrigger/Configuration/python/HLT_GRun_SONIC_cff.py, which contains fragment.hltParticleFlowRecHitHBHESPVCNN and a modified version of fragment.hltParticleFlowClusterHCAL to use the new SONIC producer for SPVCNN.  It also adds the fragment.hltParticleFlowRecHitHBHESPVCNN component to several workflows in the bottom of the cff file.  This is important!
 2. For step 3 workflows, there is a new RecoParticleFlow/PFClusterProducer/python/particleFlowClusterHCAL_cfi.py, which runs SPVCNN through the new SONIC poducer.  The original version of HCAL clustering is in particleFlowClusterHCAL_original_cfi.py.  If you change the name of particleFlowClusterHCAL_original_cfi.py to particleFlowClusterHCAL_cfi.py, then the workflow will use use the default clustering rather than SPVCNN (you might want to stash the SONIC producer version somewhere though).
 3. In the SPVCNN config files referenced above, the model is named spvcnn_td_7_tbeta_10.  You might have to change that depending on how you choose to name the model
 
@@ -32,7 +32,17 @@ and
 process.load("HeterogeneousCore.SonicTriton.TritonService_cff")
 allSonicTriton = cms.ModifierChain(enableSonicTriton)
 ```
-and something like
+Also, just as a reminder, if there's a line like
+```
+process.load('HLTrigger.Configuration.HLT_GRun_cff')
+```
+in your run config, then you should change that to
+```
+process.load('HLTrigger.Configuration.HLT_GRun_SONIC_cff')
+```
+Alternatively, you can just copy the fragments I mentioned in 1 above into whatever cff file you are using that contains the particleFlow producers and modifications to the workflows.
+
+And you need to add something like
 ```
 process.TritonService.verbose = True
 process.TritonService.fallback.verbose = True
