@@ -27,7 +27,7 @@ if __name__ == "__main__":
     #tdvals = [0.3]
     #tbetavals = [0.08, 0.10] 
 
-    tdvals = [0.6, 0.7, 0.8]
+    tdvals = [0.7]
     tbetavals = [0.10] 
     for td in tdvals:
         for tbeta in tbetavals:
