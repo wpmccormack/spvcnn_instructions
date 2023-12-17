@@ -69,8 +69,24 @@ First, make some working directory.  Then run
 ```
 git clone git@github.com:mit-han-lab/spvnas-dev.git
 cd spvnas-dev/
-git checkout 13dd8ffe979f934436d19fdf1075be5511098c08
+git checkout add_batching
 cd ..
-git clone git@github.com:AlexSchuy/python_backend.git
+git clone git@github.com:wpmccormack/python_backend.git
+cd python_backend
+git checkout add_uproot
+cd ..
 docker build -f python_backend/Dockerfile . -t triton-spvcnn
 ```
+
+Now we need to set up the model directories for SONIC.
+The model file is included in my lpc eos directory.  Get it with
+```
+xrdcp -s root://cmseos.fnal.gov//store/user/wmccorma/spvcnn_checkpoint_Feb14_PFtarget_weighted_WITHPU.pt
+``
+You also need a yaml file with various model configurations.
+Two important variables here are the td and tbeta values which hits can be used as condensation points and cluster radius.
+If you use the macro writeYAMLs_Feb14_PFtarget_weighted_WITHPU.py, you can automatically create yaml files for different td and tbeta values, and put them in a directory called yaml_files_Feb14_PFtarget_weighted_WITHPU, which you need to make.  I haven't automated this - you can choose an alternate name or whatever you like, just modify the macro as appropriate.  You can also modify the yaml template by hand if you like.
+
+The spvcnn default uses td of 0.7 and tbeta of 0.1.  I've explicitly included such a yaml file here as well: spvcnn_config_td_7_tbeta_10_ttbar.yaml.
+
+You also need to set up the model files in the correct configuration for SONIC.
