@@ -131,3 +131,10 @@ within the server.  Or all at once:
 ```
 docker run --gpus all --shm-size=1g --ulimit memlock=-1  -p 8070:8000 -p 8071:8001 -p 8072:8002 --ulimit stack=67108864 -v$PWD:/code -ti triton-spvcnn tritonserver --model-repository /code/python_backend/models
 ```
+
+
+## Additional components
+
+In the add_spvcnn branch that you merge above, there is also a producer for doing truth-based clustering.  I have also included an offline python config file for that, similar to the SONIC config.
+
+There is also a branch based on CMSSW_12 that we have been using for development: https://github.com/wpmccormack/cmssw/tree/spvcnn_dev.  This has a poorly named ProdTutorial directory that contains some producers for doing truth-matching for individual calorimeter hits and extracting extra information about the clusters that are formed within the event.  There is also a poorly named NtuplerTest, which we used to make ntuples for training.  These act essentially as regular cmssw producers though, and you can add them to workflows by adding them to job configs if you want.
