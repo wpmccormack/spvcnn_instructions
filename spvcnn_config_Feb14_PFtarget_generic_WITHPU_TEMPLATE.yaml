@@ -1,7 +1,6 @@
 batch_size: 2
 criterions:
   ins/objectcondensation:
-    fix_index_alpha: true
     name: objectcondensation
     weight: 0.08
   voxel/lovasz:
@@ -30,43 +29,9 @@ dataset:
   - 30.0
   - 2.0
   event_frac: 1.0
-  feature_means:
-  - 0.0
-  - 0.0
-  - 0.0
-  - 1.3
-  - 0.0
-  - 0.0
-  - -249.5
-  - 0.0
-  - 127.4
-  - 2.2
-  feature_names:
-  - x
-  - y
-  - z
-  - energy
-  - eta
-  - phi
-  - time
-  - theta
-  - R
-  - depth
-  feature_scales:
-  - 101.0
-  - 100.2
-  - 355.8
-  - 4.4
-  - 2.0
-  - 1.8
-  - 1557.9
-  - 1.2
-  - 63.3
-  - 1.4
   min_points: 1
   name: hcal
   root: /home/schuya/data/hcal/TTbar_radialCutoff_WITHPU_newDefinition_reco
-  standardize_features: false
   target: pf
   test_frac: 0.1
   train_frac: 0.8
@@ -96,12 +61,10 @@ optimizer:
   weight_decay: 0.0001
 scheduler:
   name: cosine_warmup
-standardize_features: true
 train:
   deterministic: false
   seed: 1588147245
   submit: false
   supernet: false
   task: panoptic
-use_weights: true
 workers_per_gpu: 4

@@ -72,7 +72,7 @@ class TritonPythonModel:
         #self.model = TritonSPVCNN('/code/spvnas-dev/configs/hcal_panoptic/spvcnn/objectcondensation.yaml')
         #self.model = TritonSPVCNN('/code/spvcnn_config_May25_2Pion.yaml', '/code/spvcnn_checkpoint_May26_2Pion.pt')
         #self.model = TritonSPVCNN('/code/yaml_files_Feb6_PFtarget_noPU/SPVCNNCONFIG.yaml', '/code/spvcnn_checkpoint_Jun15_ttbar.pt')
-        self.model = TritonSPVCNN('/code/yaml_files_Feb14_PFtarget_weighted_WITHPU/SPVCNNCONFIG.yaml', '/code/spvcnn_checkpoint_Feb14_PFtarget_weighted_WITHPU.pt')
+        self.model = TritonSPVCNN('/code/yaml_files_Feb14_PFtarget_generic_WITHPU/SPVCNNCONFIG.yaml', '/code/spvcnn_checkpoint_Feb14_PFtarget_generic_WITHPU.pt')
         logging.debug('loaded model...')
 
     def execute(self, requests):

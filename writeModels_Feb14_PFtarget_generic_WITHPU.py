@@ -27,9 +27,7 @@ if __name__ == "__main__":
     #tdvals = [0.3]
     #tbetavals = [0.08, 0.10] 
 
-    #tdvals = [0.6, 0.7, 0.8]
-    tdvals = [0.7]
-    #tdvals = [0.5, 0.9]
+    tdvals = [0.6, 0.7, 0.8]
     tbetavals = [0.10] 
     for td in tdvals:
         for tbeta in tbetavals:
@@ -37,7 +35,7 @@ if __name__ == "__main__":
                 os.mkdir("./spvcnn_td_"+str(int(round(td*10,0)))+"_tbeta_"+str(int(round(tbeta*100,0))))
             except:
                 print("already here")
-            dc_templ_file = open("../spvcnn_TEMPLATE_Feb14_PFtarget_weighted_WITHPU/config.pbtxt")
+            dc_templ_file = open("../spvcnn_TEMPLATE_Feb14_PFtarget_generic_WITHPU/config.pbtxt")
             dc_file = open("./spvcnn_td_"+str(int(round(td*10,0)))+"_tbeta_"+str(int(round(tbeta*100,0)))+"/config.pbtxt", "w")
             for line in dc_templ_file:
                 line=line.replace('NAMEVAL', "spvcnn_td_"+str(int(round(td*10,0)))+"_tbeta_"+str(int(round(tbeta*100,0))))
@@ -48,7 +46,7 @@ if __name__ == "__main__":
                 os.mkdir("./spvcnn_td_"+str(int(round(td*10,0)))+"_tbeta_"+str(int(round(tbeta*100,0)))+"/1")
             except:
                 print("already have 1")
-            dc_templ_file = open("../spvcnn_TEMPLATE_Feb14_PFtarget_weighted_WITHPU/1/model.py")
+            dc_templ_file = open("../spvcnn_TEMPLATE_Feb14_PFtarget_generic_WITHPU/1/model.py")
             dc_file = open("./spvcnn_td_"+str(int(round(td*10,0)))+"_tbeta_"+str(int(round(tbeta*100,0)))+"/1/model.py", "w")
             for line in dc_templ_file:
                 line=line.replace('SPVCNNCONFIG', "spvcnn_config_td_"+str(int(round(td*10,0)))+"_tbeta_"+str(int(round(tbeta*100,0)))+"_ttbar")
